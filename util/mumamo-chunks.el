@@ -499,21 +499,21 @@ See `mumamo-possible-chunk-forward' for POS and MAX."
                                  'mumamo-search-fw-exc-start-inlined-style
                                  'mumamo-search-fw-exc-end-inlined-style))
 
-;;;; <script ...>
+;;;; <script...>
 
 (defconst mumamo-script-tag-start-regex
   (rx "<script"
-      space
-      (0+ (not (any ">")))
-      "type"
-      (0+ space)
-      "="
-      (0+ space)
+      (*? space
+          (0+ (not (any ">")))
+          "type"
+          (0+ space)
+          "="
+          (0+ space)
       ;;(or "text" "application")
       ;;"/"
       ;;(or "javascript" "ecmascript")
-      (or "'text/javascript'" "\"text/javascript\"")
-      (0+ (not (any ">")))
+          (or "'text/javascript'" "\"text/javascript\"")
+          (0+ (not (any ">"))))
       ">"
       ;; FIX-ME: Commented out because of bug in Emacs
       ;;
